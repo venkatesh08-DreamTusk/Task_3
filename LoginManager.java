@@ -1,11 +1,11 @@
 import java.util.*;
-public  class VerifyUser {
+public  class LoginManager {
 
     Scanner in = new Scanner(System.in);
     UserDataBase user = UserDataBase.getInstance();
     CartManager cartManager;
 
-    VerifyUser(){
+    LoginManager(){
 
         this.cartManager = new CartManager();
 
@@ -26,7 +26,7 @@ public  class VerifyUser {
 
 
     public  boolean verifyUserID(String userId){
-        for(SeparateUser user : user.users){
+        for(User user : user.getUsers()){
             if(userId.equals(user.getUserID())){
                 return  true;
             }

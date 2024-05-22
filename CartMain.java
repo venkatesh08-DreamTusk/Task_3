@@ -1,8 +1,6 @@
 public class CartMain {
     public static  void main(String...args){
-        VerifyUser user = new VerifyUser();
+        LoginManager user = new LoginManager();
         user.login();
-
-
     }
 }

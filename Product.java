@@ -1,4 +1,4 @@
-public class Products {
+public class Product {
     private String pID;
     private String pName;
     private double pPrice;
@@ -22,7 +22,7 @@ public class Products {
         pStock = stock;
     }
 
-    Products(String id,String name,double price,int stock){
+    Product(String id,String name,double price,int stock){
         this.pID = id;
         this.pName = name;
         this.pPrice = price;

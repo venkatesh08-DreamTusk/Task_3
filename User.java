@@ -1,4 +1,4 @@
-public  class SeparateUser {
+public  class User {
     private String userID;
     Cart cart;
 
@@ -6,7 +6,7 @@ public  class SeparateUser {
         return  userID;
     }
 
-    SeparateUser(String id ,Cart cart){
+    User(String id ,Cart cart){
         this.userID = id;
         this.cart   = cart;
     }

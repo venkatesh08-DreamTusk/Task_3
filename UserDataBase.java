@@ -1,7 +1,11 @@
 import java.util.ArrayList;
 
-public  class UserDataBase {
-    ArrayList<SeparateUser> users = new ArrayList<>();
+public  final  class UserDataBase {
+    private  ArrayList<User> users = new ArrayList<>();
+
+    public ArrayList<User> getUsers() {
+        return users;
+    }
 
     private static  UserDataBase userDataBase;
 
@@ -17,16 +21,16 @@ public  class UserDataBase {
     }
 
     public void usersDetails(){
-        SeparateUser uset1 = new SeparateUser("s01",new Cart());
+       User uset1 = new User("s01",new Cart());
         users.add(uset1);
-        SeparateUser uset2 = new SeparateUser("v02",new Cart());
+        User uset2 = new User("v02",new Cart());
         users.add(uset2);
-        SeparateUser uset3 = new SeparateUser("v03",new Cart());
+        User uset3 = new User("v03",new Cart());
         users.add(uset3);
     }
 
-    public SeparateUser getUserById(String userID){
-       for(SeparateUser user : userDataBase.users){
+    public User getUserById(String userID){
+       for(User user : userDataBase.users){
            if(userID.equals(user.getUserID())){
                return user;
            }

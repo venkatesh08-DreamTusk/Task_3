@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class CartManager {
     Scanner in = new Scanner(System.in);
-    ProductList productList = ProductList.getObject();
+    ProductDataBase productList = ProductDataBase.getInstance();
     Cart cart;
 
     CartManager(){
@@ -45,7 +45,7 @@ public class CartManager {
 
     }
     public void viewmenuProduct(String userID){
-        for (Products products : productList.products) {
+        for (Product products : productList.products) {
             System.out.println(products);
         }
         askRequest(userID);
