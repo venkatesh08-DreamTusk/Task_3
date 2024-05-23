@@ -1,20 +1,34 @@
-import java.util.ArrayList;
 
-public class CartItem{
-   private ArrayList<Product> product;
-   private  int currentquantity ;
 
-   public int getCurrentquantity(){
-       return  currentquantity ;
-   }
+public class CartItem {
+    private Product product;
+    private int currentquantity;
 
-   public  void setCurrentquantity(int currentquantity){
-       this.currentquantity = currentquantity;
-   }
 
-    CartItem(ArrayList<Product> product){
-       this.product = product;
-       currentquantity = 1;
+    CartItem(Product product) {
+        this.product = product;
+        currentquantity = 1;
     }
+
+    public  Product getProduct(){
+        return product;
+    }
+
+    public int getCurrentquantity() {
+        return currentquantity;
+    }
+
+    public void setCurrentquantity(int currentQuantity) {
+        this.currentquantity = currentQuantity;
+    }
+
+    public String toString(){
+        return "Product ID : "+getProduct().getpID()+" "+"|"+" "+
+                "Product Name : "+getProduct().getpName()+" "+"|"+" "+
+                "Product Price : "+getProduct().getpPrice()+" "+"|"+" "+
+                "Product Quantity : "+getCurrentquantity();
+    }
+
+
 
 }

@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 public class CartManager {
     Scanner in = new Scanner(System.in);
@@ -30,8 +31,8 @@ public class CartManager {
                 break;
             case 2:
                 if (cart.viewCart(user)) {
-                    for (Product product : user.cart.cartProducts) {
-                        System.out.println(product);
+                    for (CartItem item: user.cart.cartItem) {
+                        System.out.println(item);
                     }
                 } else {
                     System.out.println("Cart is Empty...");
