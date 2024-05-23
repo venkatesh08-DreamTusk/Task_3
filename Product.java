@@ -1,4 +1,6 @@
+
 public class Product {
+
     private String pID;
     private String pName;
     private double pPrice;
@@ -29,11 +31,12 @@ public class Product {
         this.pStock = stock;
     }
 
+
     public String toString(){
         return "Product ID : "+"' "+ pID+" '"+"  |  "+
                 "Product Name : "+"' "+pName+" '"+"  |  "+
                 "Product Price : "+"' "+pPrice+" '"+"  |  "+
-                "Product Stock : "+"' "+pStock+" '";
+                "Product Quantity : "+"' "+pStock+" '";
     }
 
 }

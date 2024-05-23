@@ -3,133 +3,54 @@ import java.util.*;
 public class Cart {
     Scanner in = new Scanner(System.in);
     ArrayList<Product> cartProducts;
-    UserDataBase userDataBase;
     ProductDataBase productList;
+    CartItem cartItem;
+
+
 
     Cart(){
         cartProducts = new ArrayList<>();
-        userDataBase = UserDataBase.getInstance();
         productList = ProductDataBase.getInstance();
+        cartItem = new CartItem(cartProducts);
+
     }
 
-    public void viewCart(String userID){
-        User users = userDataBase.getUserById(userID);
-        if(users != null){
-            if(users.cart.cartProducts.isEmpty()){
-                System.out.println("Cart is Empty...");
-            }else {
-                for(Product products : users.cart.cartProducts){
-                    System.out.println(products);
-                }
-            }
-        }else {
-            System.out.println("Invalid User ID");
-        }
+    public boolean viewCart(User user){
+
+        return !user.cart.cartProducts.isEmpty();
     }
 
-    public  void addItem(String userID){
-        System.out.println("Give Product ID");
-        String pid = in.next();
-        User user = userDataBase.getUserById(userID);
-           if(user != null){
-            addItemtoParticularuserCart(pid,user);
-        }else {
-            System.out.println("Invalid User ID");
-        }
-    }
-
-    public void addItemtoParticularuserCart(String pId,User user){
-
+    public  boolean addItem(String pID, User user){
         Product productsToAdd = null;
-        for(Product product : productList.products){
-            if(pId.equals(product.getpID())){
-                productsToAdd = product;
-                break;
+       for(Product product : productList.products){
+           if(pID.equals(product.getpID())){
+               productsToAdd = product;
+               break;
+
+           }
+       }
+       if(productsToAdd != null){
+           user.cart.cartProducts.add(productsToAdd);
+           return true;
+       }
+       return false;
+    }
+
+
+    public  boolean removeItem(String pId,User user){
+              return  user.cart.cartProducts.removeIf(product -> pId.equals(product.getpID()));
+    }
+
+
+    public boolean updateQuantity(String pID, User user , int quantity){
+        for(Product product :user.cart.cartProducts ){
+            if(!pID.equals(product.getpID())){
+                return  false;
             }
         }
-        if(productsToAdd != null) {
-            user.cart.cartProducts.add(productsToAdd);
-            System.out.println("Successfully product added...");
-        }else {
-            System.out.println("Product is Unavailable ");
-        }
+        user.cart.cartItem.setCurrentquantity(quantity);
+        return true;
     }
-
-    public  void removeItem(String userId){
-        System.out.println("Give Product ID");
-        String pID = in.next();
-
-        User user = userDataBase.getUserById(userId);
-        if(user != null){
-            removeItemfromParticularuserCart(pID,user);
-        }else {
-            System.out.println("Invalid User ID");
-        }
-}
-
-
-    public  void removeItemfromParticularuserCart(String pId,User userCart){
-                        boolean removed = userCart.cart.cartProducts.removeIf(products -> pId.equals(products.getpID()));
-                if(removed){
-                    System.out.println("Removed Successfully");
-                }else{
-                    System.out.println("Sorry...This Product Unavailable in Your Cart");
-                }
-    }
-
-    public void updateProductQuantity(String userID){
-        System.out.println("Give Product ID");
-        String pID = in.next();
-        User user = userDataBase.getUserById(userID);
-        if(user != null){
-            updateProductQuantityOptions(pID,user);
-        }else {
-            System.out.println("Invalid User ID");
-        }
-    }
-    public  void updateProductQuantityOptions(String pId,User user) {
-
-        for(Product products : user.cart.cartProducts ){
-            if(pId.equals(products.getpID())){
-                System.out.println("If You Add Existing Product Quantity    ---> press '1' ");
-                System.out.println("If You Reduce Existing Product Quantity ---> press '2' ");
-                int number = in.nextInt();
-
-                if(number < 1 || number >2){
-                    System.out.println("Give Correct Option Number");
-                }
-
-                if(number == 1){
-                    updateIncrement(pId,user);
-                }else if(number == 2){
-                    updateDecrement(pId,user);
-                }else {
-                    System.out.println("Give Correct Option");
-                }
-            }
-        }
-    }
-
-
-    public  void updateIncrement(String pId, User user){
-        System.out.println("How much would you Increase...Give in Integer");
-        int number = in.nextInt();
-
-        for(Product products : user.cart.cartProducts){
-            products.setpStock(products.getpStock() + number);
-        }
-
-    }
-
-    public void updateDecrement(String pId, User user) {
-        System.out.println("How much would you Decrease...Give in Integer");
-        int number = in.nextInt();
-        for(Product products : user.cart.cartProducts){
-            products.setpStock(products.getpStock() - number);
-        }
-    }
-
-
 
 
 }

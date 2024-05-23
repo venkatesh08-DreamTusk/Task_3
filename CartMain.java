@@ -1,6 +1,6 @@
 public class CartMain {
     public static  void main(String...args){
-        LoginManager user = new LoginManager();
-        user.login();
+        LoginManager loginManager = new LoginManager();
+        loginManager.login();
     }
 }

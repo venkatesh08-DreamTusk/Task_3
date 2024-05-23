@@ -21,11 +21,11 @@ public  final  class UserDataBase {
     }
 
     public void usersDetails(){
-       User uset1 = new User("s01",new Cart());
+       User uset1 = new User("s01","Sarath",new Cart());
         users.add(uset1);
-        User uset2 = new User("v02",new Cart());
+        User uset2 = new User("v02","Venkatesh",new Cart());
         users.add(uset2);
-        User uset3 = new User("v03",new Cart());
+        User uset3 = new User("v03","Vignesh",new Cart());
         users.add(uset3);
     }
 

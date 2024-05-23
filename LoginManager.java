@@ -1,13 +1,12 @@
 import java.util.*;
 public  class LoginManager {
 
-    Scanner in = new Scanner(System.in);
+    private final Scanner in = new Scanner(System.in);
     UserDataBase user = UserDataBase.getInstance();
-    CartManager cartManager;
+
+
 
     LoginManager(){
-
-        this.cartManager = new CartManager();
 
     }
     public  void login(){
@@ -15,7 +14,7 @@ public  class LoginManager {
         System.out.println("Give ID");
         String userId = in.next();
         if(verifyUserID(userId)){
-            cartManager.askRequest(userId);
+            CartManager cartManager = new CartManager(user.getUserById(userId));
               login();
         }else {
             System.out.println("ID is Wrong Give Correct User ID");

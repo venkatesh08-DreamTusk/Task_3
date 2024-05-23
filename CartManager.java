@@ -2,13 +2,18 @@ import java.util.Scanner;
 public class CartManager {
     Scanner in = new Scanner(System.in);
     ProductDataBase productList = ProductDataBase.getInstance();
-    Cart cart;
+    private final Cart cart;
+    User user;
 
-    CartManager(){
+    CartManager(User users) {
+        user = users;
         cart = new Cart();
+        askRequest();
     }
-    public  void askRequest(String userID) {
+
+    public void askRequest() {
         System.out.println("---------------------------------------------------------------------------------");
+        System.out.println("Hi "+user.getName());
         System.out.println("View Products           ---> press '1' ");
         System.out.println("View Cart               ---> press '2' ");
         System.out.println("Add Product to Cart     ---> press '3' ");
@@ -21,19 +26,46 @@ public class CartManager {
 
         switch (num) {
             case 1:
-                viewmenuProduct(userID);
+                viewProduct();
                 break;
             case 2:
-                viewUserCart(userID);
+                if (cart.viewCart(user)) {
+                    for (Product product : user.cart.cartProducts) {
+                        System.out.println(product);
+                    }
+                } else {
+                    System.out.println("Cart is Empty...");
+                }
                 break;
             case 3:
-                addItem(userID);
+                System.out.println("Enter Product ID");
+                String pId = in.next();
+                if (cart.addItem(pId,user)) {
+                    System.out.println("Product Added Successfully...");
+                } else {
+                    System.out.println("Product Not Exists...");
+                }
                 break;
             case 4:
-                removeItem(userID);
+                System.out.println("Enter Product ID");
+                String pID = in.next();
+                if (!cart.removeItem(pID,user)) {
+                    System.out.println("Item Not Exists...");
+                } else {
+                    System.out.println("Item Successfully Removed...");
+                }
                 break;
             case 5:
-                updateQuantity(userID);
+                System.out.println("Give Product ID");
+                String pid = in.next();
+                System.out.println("Give Product Quantity");
+                int quantity = in.nextInt();
+                if(cart.updateQuantity(pid,user,quantity)){
+                    System.out.println("Quantity Updated...");
+                }else {
+                    System.out.println("Product Not Exists...");
+                }
+
                 break;
             case 6:
                 return;
@@ -42,34 +74,16 @@ public class CartManager {
                 break;
         }
 
+        askRequest();
 
     }
-    public void viewmenuProduct(String userID){
+
+    public void viewProduct() {
         for (Product products : productList.products) {
             System.out.println(products);
         }
-        askRequest(userID);
-    }
-
-    public void viewUserCart (String userID) {
-        cart.viewCart(userID);
-        askRequest(userID);
-    }
-
-    public void addItem(String userID) {
-        cart.addItem(userID);
-        askRequest(userID);
-    }
-
-    public void removeItem(String userID){
-        cart.removeItem(userID);
-        askRequest(userID);
 
     }
-    public void updateQuantity(String userID){
-        cart.updateProductQuantity(userID);
-        askRequest(userID);
 
-    }
 
 }
