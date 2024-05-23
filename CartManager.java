@@ -31,9 +31,12 @@ public class CartManager {
                 break;
             case 2:
                 if (cart.viewCart(user)) {
+                    double totalPrice = 0;
                     for (CartItem item: user.cart.cartItem) {
+                        totalPrice += item.totalprice();
                         System.out.println(item);
                     }
+                    System.out.println("Total Price : "+ totalPrice);
                 } else {
                     System.out.println("Cart is Empty...");
                 }

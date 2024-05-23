@@ -3,6 +3,12 @@
 public class CartItem {
     private Product product;
     private int currentquantity;
+    private  double totalPrice;
+
+    public double totalprice(){
+        this.totalPrice = getProduct().getpPrice()*getCurrentquantity();
+             return totalPrice;
+    }
 
 
     CartItem(Product product) {
@@ -26,7 +32,8 @@ public class CartItem {
         return "Product ID : "+getProduct().getpID()+" "+"|"+" "+
                 "Product Name : "+getProduct().getpName()+" "+"|"+" "+
                 "Product Price : "+getProduct().getpPrice()+" "+"|"+" "+
-                "Product Quantity : "+getCurrentquantity();
+                "Product Quantity : "+getCurrentquantity()+" "+"|"+" "+
+                "Total Price : "+totalprice();
     }
 
 
