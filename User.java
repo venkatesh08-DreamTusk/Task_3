@@ -15,9 +15,7 @@ public  class User {
     public  void setuName(String name){
         this.uName = name;
     }
-    User(){
 
-    }
     User(String id , String name, Cart cart){
         this.userID = id;
         this.uName = name;

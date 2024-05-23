@@ -2,18 +2,17 @@
 
 public class CartItem {
     private Product product;
-    private int currentquantity;
-    private  double totalPrice;
+    private int quantity;
+
 
     public double totalprice(){
-        this.totalPrice = getProduct().getpPrice()*getCurrentquantity();
-             return totalPrice;
+             return getProduct().getpPrice()*getCurrentquantity();
     }
 
 
     CartItem(Product product) {
         this.product = product;
-        currentquantity = 1;
+        quantity = 1;
     }
 
     public  Product getProduct(){
@@ -21,11 +20,11 @@ public class CartItem {
     }
 
     public int getCurrentquantity() {
-        return currentquantity;
+        return quantity;
     }
 
     public void setCurrentquantity(int currentQuantity) {
-        this.currentquantity = currentQuantity;
+        this.quantity = currentQuantity;
     }
 
     public String toString(){

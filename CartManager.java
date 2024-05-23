@@ -1,4 +1,4 @@
-import java.util.Arrays;
+
 import java.util.Scanner;
 public class CartManager {
     Scanner in = new Scanner(System.in);
